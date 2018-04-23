@@ -2,23 +2,23 @@
 
 <?php 
 
-	spl_autoload_register(function ($class) {
+		spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
-
-	//include 'userinfo.php';
 
  ?>
 
  <div class="row">
-<br><br>
+
+ <br><br>
+
   <a class="btn btn-info" href="index.php">For Users</a> 
   <a class="btn btn-info" href="friends.php">For Friends</a>
 <br><br>
 	<div class="col-md-4">
 
 	<?php
-	$users = new userinfo;
+	$users = new friend;
 
 
 	// Insert data
@@ -98,7 +98,7 @@
 
 	  ?>
 
-	  <a class="btn btn-info" href="index.php">Add New data</a>
+	  
 
 
 	  <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
@@ -164,13 +164,13 @@
 				<td>
 
 					<button class="btn-info" >
-					<?php echo "<a href='index.php?action=update&id=".$value['id']."'>Edit</a>"; ?>
+					<?php echo "<a href='friends.php?action=update&id=".$value['id']."'>Edit</a>"; ?>
 						
 					</button>
 				 	|| 
 					 <button class="btn-warning" >
 
-					 <?php echo "<a href='index.php?action=delete&id=".$value['id']."' onClick='return confirm(\"Are you sure to delete data!\")'>Delete</a> "; ?>
+					 <?php echo "<a href='friends.php?action=delete&id=".$value['id']."' onClick='return confirm(\"Are you sure to delete data!\")'>Delete</a> "; ?>
 					 	
 					 </button>
 				</td>

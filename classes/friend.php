@@ -1,9 +1,9 @@
 <?php
 
-include 'db.php';
+include 'main.php';
 
-class userinfo{
-	private $table='users';
+class friend extends main{
+	protected $table='friend';
 	private $name;
 	private $email;
 	private $skill;
@@ -18,7 +18,7 @@ class userinfo{
 			$this->skill = $skill;
 	}
 
-
+	// Insert data
 	public function insertData(){
 
 		$sql = "INSERT INTO $this->table(name, email, skill) VALUES(:name, :email, :skill)";
@@ -29,7 +29,7 @@ class userinfo{
 
 		return $stmt->execute();
 	}
-
+	// Update data
 	public function update($id){
 		$sql = "UPDATE $this->table SET name=:name, email=:email, skill=:skill Where id=:id";
 		$stmt = DB::prepare($sql);
@@ -39,45 +39,7 @@ class userinfo{
 		$stmt->bindParam(':id', $id);
 		return $stmt->execute();
 	}
-
-	public function readByid($id){
-		$sql = "SELECT * FROM $this->table WHERE id=:id";
-
-		$stmt = DB::prepare($sql);
-		$stmt->bindParam(':id', $id);
-		$stmt->execute();
-		return $stmt->fetch();
-	}
-
-	public function dataDelete($id){
-
-		$sql  = "DELETE FROM $this->table where id=:id";
-		$stmt = DB::prepare($sql);
-		$stmt->bindParam(':id', $id);
-		return $stmt->execute(); 
-	}
-
-
-// Method for read data
-	public function readall(){
-
 	
-
-		$sql = "SELECT * FROM $this->table";
-
-		 $stmt = DB::prepare($sql);
-
-		// $success = $stmt->execute();
-
-		 if($stmt->execute()){
-    			echo 'readall method Query Executed';
-			}
-			else {
-				 echo 'Sorry, Something wrong';
-			}
-
-		 return $stmt->fetchAll();
-	}
 
 
 
