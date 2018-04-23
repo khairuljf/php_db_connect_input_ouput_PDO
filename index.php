@@ -62,8 +62,24 @@
 
 
 
+	// Data delete
+	elseif (isset($_GET['action']) && $_GET['action']=="delete") {
 
-	 ?>
+			$id = $_GET['id'];
+
+			$success = $users->dataDelete($id);
+
+			if($success){
+				echo "Data removed!!";
+			}
+			else{
+				echo 'Something Wrong!';
+			}
+		
+	}
+
+
+ ?>
 
 
 
@@ -74,6 +90,8 @@
 				$result = $users->readByid($id);
 
 	  ?>
+
+	  <a class="btn btn-info" href="index.php">Add New data</a>
 
 
 	  <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
@@ -92,26 +110,7 @@
 
 
 
-<?php }
-
-	elseif (isset($_GET['action']) && $_GET['action']=="delete") {
-
-			$id = $_GET['id'];
-
-			$success = $users->dataDelete($id);
-
-			if($success){
-				echo "Data removed!!";
-			}
-			else{
-				echo 'Something Wrong!';
-			}
-		
-	}
-
-
-
- else { ?>
+<?php } else { ?>
 
 
 
@@ -164,7 +163,7 @@
 				 	|| 
 					 <button class="btn-warning" >
 
-					 <?php echo "<a href='index.php?action=delete&id=".$value['id']."'>Delete</a> "; ?>
+					 <?php echo "<a href='index.php?action=delete&id=".$value['id']."' onClick='return confirm(\"Are you sure to delete data!\")'>Delete</a> "; ?>
 					 	
 					 </button>
 				</td>

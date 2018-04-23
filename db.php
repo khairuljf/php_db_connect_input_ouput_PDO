@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+// Database connection file
 
 include 'config.php';
 
